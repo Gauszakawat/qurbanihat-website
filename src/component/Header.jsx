@@ -1,12 +1,12 @@
 'use client';
-import { authClient } from '@/lib/auth-client';
+// import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
 
 const Header =  ({user}) => {
     const Links = <>
         <li><Link href={'/'}>Home</Link></li>
         <li><Link href={'/animals'}>All Animals</Link></li>
+        <li><Link href={'/profile'}>My profile</Link></li>
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -32,9 +32,12 @@ const Header =  ({user}) => {
 
             <div className="navbar-end">
                 {
-                    user ? <div>
-                        <p>{user.name}</p>
-                        <Link href={'/register'}><button className="btn bg-green-600 text-white">Logout</button></Link></div>
+                    user ? <div className='flex space-x-2 items-center '>
+                        <p className='mr-1.5'>{user.name}</p>
+                        <Link href={'/login'}><button className="btn bg-green-600 text-white">Logout</button></Link>
+
+                        
+                        </div>
                         : <div>
                             <Link href={'/login'}><button className="btn bg-green-600 text-white">Login</button></Link>
 

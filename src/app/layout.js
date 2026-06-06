@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "@/component/Header";
 import Footer from "@/component/Footer";
 import { authClient } from "@/lib/auth-client";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +22,18 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const { data: session } = await authClient.getSession();
-  const user = session?.user;
-  console.log(user, 'my account')
+  // const {session, user} = await auth.api.getSession({
+  //   headers: await headers(),
+  // });
+  // console.log(user)
+    const data = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  const session = data?.session;
+  const user = data?.user;
+
+  console.log(user);
 
 
 
