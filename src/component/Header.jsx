@@ -1,8 +1,9 @@
 'use client';
+import { authClient } from '@/lib/auth-client';
 // import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 
-const Header =  ({user}) => {
+const Header = ({ user }) => {
     const Links = <>
         <li><Link href={'/'}>Home</Link></li>
         <li><Link href={'/animals'}>All Animals</Link></li>
@@ -34,10 +35,13 @@ const Header =  ({user}) => {
                 {
                     user ? <div className='flex space-x-2 items-center '>
                         <p className='mr-1.5'>{user.name}</p>
-                        <Link href={'/login'}><button className="btn bg-green-600 text-white">Logout</button></Link>
+                        <button onClick={async () => {
+                            await authClient.signOut();
+                            window.location.href = '/';
+                        }} className="btn bg-green-600 text-white">Logout</button>
 
-                        
-                        </div>
+
+                    </div>
                         : <div>
                             <Link href={'/login'}><button className="btn bg-green-600 text-white">Login</button></Link>
 
