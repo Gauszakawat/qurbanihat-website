@@ -15,7 +15,7 @@ const page = () => {
                             src="https://i.pravatar.cc/300"
                             alt=""
                             className="w-36 h-36 rounded-full object-cover border-4 border-green-500"
-                        />   
+                        />    
 
                         <div className="flex-1">
 
